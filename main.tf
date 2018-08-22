@@ -2,11 +2,11 @@ provider "google" {}
 
 # Reserving the Public IP Address of the External Load Balancer for the node
 resource "google_compute_address" "node" {
-  name = "${var.name_prefix}-external-${var.dcos_node}-node-address"
+  name = "${var.name_prefix}-external-${var.dcos_role}-node-address"
 }
 
 resource "google_compute_firewall" "allow-health-checks" {
-  name    = "${var.name_prefix}-${var.dcos_node}-allow-health-checks"
+  name    = "${var.name_prefix}-${var.dcos_role}-allow-health-checks"
   network = "${var.network}"
 
   allow {
@@ -20,7 +20,7 @@ resource "google_compute_firewall" "allow-health-checks" {
 resource "google_compute_forwarding_rule" "external-node-forwarding-rule-http" {
   name                  = "${var.name_prefix}-${var.dcos_role}-external-lb-forwarding-rule-http"
   load_balancing_scheme = "EXTERNAL"
-  target                = "${var.target}"
+  target                = "${google_compute_target_pool.node-pool.self_link}"
   port_range            = "80"
   ip_address            = "${google_compute_address.node.address}"
   depends_on            = ["google_compute_http_health_check.node-adminrouter-healthcheck"]
@@ -29,7 +29,7 @@ resource "google_compute_forwarding_rule" "external-node-forwarding-rule-http" {
 resource "google_compute_forwarding_rule" "external-node-forwarding-rule-https" {
   name                  = "${var.name_prefix}-${var.dcos_role}-external-lb-forwarding-rule-https"
   load_balancing_scheme = "EXTERNAL"
-  target                = "${var.target}"
+  target                = "${google_compute_target_pool.node-pool.self_link}"
   port_range            = "443"
   ip_address            = "${google_compute_address.node.address}"
   depends_on            = ["google_compute_http_health_check.node-adminrouter-healthcheck"]
