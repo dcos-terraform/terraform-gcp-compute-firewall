@@ -48,7 +48,7 @@ resource "google_compute_target_pool" "node-pool" {
 
 # Used for the external load balancer. The external load balancer only supports google_compute_http_health_check resource.
 resource "google_compute_http_health_check" "node-adminrouter-healthcheck" {
-  name                = "${var.name_prefix}-ext-http-${var.dcos_role}-check"
+  name                = "${var.name_prefix}-ext-http-${var.dcos_role}-chk"
   check_interval_sec  = 30
   timeout_sec         = 5
   healthy_threshold   = 2
