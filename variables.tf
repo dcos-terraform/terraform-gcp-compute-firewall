@@ -5,6 +5,4 @@ variable "name_prefix" {}
 variable "network" {}
 
 # List of allowed IPs to access DCOS cluster
-variable "admin_cidr" {
-  default = "0.0.0.0/0"
-}
+variable "admin_cidr" {}
