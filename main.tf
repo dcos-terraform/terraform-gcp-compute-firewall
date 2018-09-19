@@ -30,8 +30,8 @@ resource "google_compute_firewall" "internal-any-any" {
     protocol = "tcp"
   }
 
-  source_ranges = ["10.0.0.0/8"]
-  description   = "Used to allow internal access to all servers within the VPC 10.0.0.0/8 CIDR block range."
+  source_ranges = ["${var.internal_subnets}"]
+  description   = "Used to allow internal access to all servers."
 }
 
 resource "google_compute_firewall" "adminrouter" {
