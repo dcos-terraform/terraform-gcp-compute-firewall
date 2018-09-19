@@ -43,7 +43,7 @@ resource "google_compute_firewall" "adminrouter" {
     ports    = ["80", "443"]
   }
 
-  source_ranges = ["${var.admin_cidr}"]
+  source_ranges = ["${var.admin_ips}"]
   description   = "Used to allow HTTP and HTTPS access to DC/OS Adminrouter from the outside world specified by the user source range."
 }
 
@@ -56,6 +56,6 @@ resource "google_compute_firewall" "ssh" {
     ports    = ["22"]
   }
 
-  source_ranges = ["${var.admin_cidr}"]
+  source_ranges = ["${var.admin_ips}"]
   description   = "Used to allow SSH access to any instance from the outside world specified by the user source range."
 }

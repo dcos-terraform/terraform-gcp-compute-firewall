@@ -7,8 +7,3 @@ output "name_prefix" {
 output "network" {
   value = "${var.network}"
 }
-
-# List of allowed IPs to access DCOS cluster
-output "admin_cidr" {
-  value = "${var.admin_cidr}"
-}

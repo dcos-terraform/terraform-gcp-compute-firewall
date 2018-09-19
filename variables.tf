@@ -9,5 +9,7 @@ variable "internal_subnets" {
   type        = "list"
 }
 
-# List of allowed IPs to access DCOS cluster
-variable "admin_cidr" {}
+variable "admin_ips" {
+  description = "List of CIDR ips for admin access"
+  type        = "list"
+}
