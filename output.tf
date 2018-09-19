@@ -13,11 +13,6 @@ output "instances_self_link" {
   value = "${var.instances_self_link}"
 }
 
-# GFE Public IP Address
-output "gfe.public_ip" {
-  value = "${google_compute_forwarding_rule.external-node-forwarding-rule-http.ip_address}"
-}
-
 # DCOS Role
 output "dcos_role" {
   value = "${var.dcos_role}"
