@@ -1,4 +1,4 @@
-# DC/OS Public Load Balancer Firewall
+# DC/OS Network Firewall Rules
 
 ## Inputs
 

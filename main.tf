@@ -1,57 +1,61 @@
 provider "google" {}
 
-# Reserving the Public IP Address of the External Load Balancer for the node
-resource "google_compute_address" "node" {
-  name = "${var.name_prefix}-ext-${var.dcos_role}-node-addr"
-}
-
-resource "google_compute_firewall" "allow-health-checks" {
-  name    = "${var.name_prefix}-${var.dcos_role}-health-chk"
+resource "google_compute_firewall" "allow-load-balancer-health-checks" {
+  name    = "${var.name_prefix}-allow-loadbalancer-access"
   network = "${var.network}"
 
   allow {
     protocol = "tcp"
   }
 
-  # The health check probes to your load balanced instances come from addresses in range 130.211.0.0/22 and 35.191.0.0/16.
+  # The health check probes to your load balanced instances come from addresses
+  # in range 130.211.0.0/22 and 35.191.0.0/16.
+  # See https://cloud.google.com/load-balancing/docs/health-checks#https_ssl_proxy_tcp_proxy_and_internal_load_balancing  # for more details
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
 }
 
-resource "google_compute_forwarding_rule" "external-node-forwarding-rule-http" {
-  name                  = "${var.name_prefix}-${var.dcos_role}-ext-lb-rule-http"
-  load_balancing_scheme = "EXTERNAL"
-  target                = "${google_compute_target_pool.node-pool.self_link}"
-  port_range            = "80"
-  ip_address            = "${google_compute_address.node.address}"
-  depends_on            = ["google_compute_http_health_check.node-adminrouter-healthcheck"]
+resource "google_compute_firewall" "internal-any-any" {
+  name    = "${var.name_prefix}-internal-any-any"
+  network = "${var.network}"
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "udp"
+  }
+
+  allow {
+    protocol = "tcp"
+  }
+
+  source_ranges = ["10.0.0.0/8"]
+  description   = "Used to allow internal access to all servers within the VPC 10.0.0.0/8 CIDR block range."
 }
 
-resource "google_compute_forwarding_rule" "external-node-forwarding-rule-https" {
-  name                  = "${var.name_prefix}-${var.dcos_role}-ext-lb-rule-https"
-  load_balancing_scheme = "EXTERNAL"
-  target                = "${google_compute_target_pool.node-pool.self_link}"
-  port_range            = "443"
-  ip_address            = "${google_compute_address.node.address}"
-  depends_on            = ["google_compute_http_health_check.node-adminrouter-healthcheck"]
+resource "google_compute_firewall" "adminrouter" {
+  name    = "${var.name_prefix}-adminrouter-firewall"
+  network = "${var.network}"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+
+  source_ranges = ["${var.admin_cidr}"]
+  description   = "Used to allow HTTP and HTTPS access to DC/OS Adminrouter from the outside world specified by the user source range."
 }
 
-# Target Pool for external load balancing access
-resource "google_compute_target_pool" "node-pool" {
-  name = "${var.name_prefix}-${var.dcos_role}-pool"
+resource "google_compute_firewall" "ssh" {
+  name    = "${var.name_prefix}-ssh"
+  network = "${var.network}"
 
-  instances = ["${var.instances_self_link}"]
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
 
-  health_checks = [
-    "${google_compute_http_health_check.node-adminrouter-healthcheck.name}",
-  ]
-}
-
-# Used for the external load balancer. The external load balancer only supports google_compute_http_health_check resource.
-resource "google_compute_http_health_check" "node-adminrouter-healthcheck" {
-  name                = "${var.name_prefix}-ext-http-${var.dcos_role}-chk"
-  check_interval_sec  = 30
-  timeout_sec         = 5
-  healthy_threshold   = 2
-  unhealthy_threshold = 2
-  port                = "80"
+  source_ranges = ["${var.admin_cidr}"]
+  description   = "Used to allow SSH access to any instance from the outside world specified by the user source range."
 }

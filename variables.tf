@@ -11,3 +11,8 @@ variable "instances_self_link" {
 
 # DCOS Role
 variable "dcos_role" {}
+
+# List of allowed IPs to access DCOS cluster
+variable "admin_cidr" {
+  default = "0.0.0.0/0"
+}
