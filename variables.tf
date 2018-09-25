@@ -1,8 +1,12 @@
 # Cluster Name
-variable "name_prefix" {}
+variable "name_prefix" {
+  description = "Cluster Name"
+}
 
 # Network Name
-variable "network" {}
+variable "network" {
+  description = "network"
+}
 
 variable "internal_subnets" {
   description = "List of internal subnets to allow traffic between them"
@@ -10,6 +14,6 @@ variable "internal_subnets" {
 }
 
 variable "admin_ips" {
-  description = "List of CIDR ips for admin access"
+  description = "List of CIDR admin IPs"
   type        = "list"
 }
