@@ -1,23 +1,20 @@
+[![Build Status](https://jenkins-terraform.mesosphere.com/service/dcos-terraform-jenkins/job/dcos-terraform/job/terraform-gcp-compute-firewall/job/master/badge/icon)](https://jenkins-terraform.mesosphere.com/service/dcos-terraform-jenkins/job/dcos-terraform/job/terraform-gcp-compute-firewall/job/master/)
 # DC/OS Network Firewall Rules
+
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| cluster_name | Cluster Name | string | - | yes |
-| dcos_role | DCOS Role | string | - | yes |
-| instances_self_link | Instances Self Link | string | - | yes |
-| ip_addresss | Instance Type | string | - | yes |
-| network | Network Name | string | - | yes |
-| target | Target Self Link | string | - | yes |
+| admin_ips | List of CIDR admin IPs | list | - | yes |
+| internal_subnets | List of internal subnets to allow traffic between them | list | - | yes |
+| name_prefix | Cluster Name | string | - | yes |
+| network | network | string | - | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cluster_name | Cluster Name |
-| dcos_role | DCOS Role |
-| instances_self_link | Instances Self Link |
-| ip_addresss | Instance Type |
+| name_prefix | Cluster Name |
 | network | Network Name |
-| target | Target Self Link |
+
