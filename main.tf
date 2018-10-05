@@ -1,6 +1,21 @@
 /**
  * [![Build Status](https://jenkins-terraform.mesosphere.com/service/dcos-terraform-jenkins/job/dcos-terraform/job/terraform-gcp-compute-firewall/job/master/badge/icon)](https://jenkins-terraform.mesosphere.com/service/dcos-terraform-jenkins/job/dcos-terraform/job/terraform-gcp-compute-firewall/job/master/)
  * # DC/OS Network Firewall Rules
+ *
+ * The firewall module creates four different policies to be used by provisioning DC/OS Infrastructure
+ *
+ * ## EXAMPLE
+ *
+ * ```hcl
+ * module "dcos-compute-firewall" {
+ *   source  = "dcos-terraform/compute-firewall/gcp"
+ *   version = "~> 0.1"
+ *
+ *   network = "network_self_link"
+ *   internal_subnets = "172.12.0.0/16"
+ *   admin_ips = ["1.2.3.4/32"]
+ * }
+ * ```
  */
 
 provider "google" {}
