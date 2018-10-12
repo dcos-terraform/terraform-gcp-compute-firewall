@@ -17,3 +17,9 @@ variable "admin_ips" {
   description = "List of CIDR admin IPs"
   type        = "list"
 }
+
+variable "public_agents_ips" {
+  description = "List of ips allowed access to public agents. admin_ips are joined to this list"
+  type        = "list"
+  default     = ["0.0.0.0/0"]
+}

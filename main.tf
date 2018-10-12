@@ -79,3 +79,18 @@ resource "google_compute_firewall" "ssh" {
   source_ranges = ["${var.admin_ips}"]
   description   = "Used to allow SSH access to any instance from the outside world specified by the user source range."
 }
+
+resource "google_compute_firewall" "public-agents" {
+  name    = "${var.cluster_name}-public-agents"
+  network = "${var.network}"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["${var.public_agents_ips}"]
+  target_tags   = ["${var.cluster_name}-public-agents"]
+
+  description = "Allow acces to public agents."
+}
