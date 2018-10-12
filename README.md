@@ -25,6 +25,7 @@ module "dcos-compute-firewall" {
 | cluster_name | Cluster Name | string | - | yes |
 | internal_subnets | List of internal subnets to allow traffic between them | list | - | yes |
 | network | network | string | - | yes |
+| public_agents_additional_ports | List of additional ports allowed for public access on public agents (80 and 443 open by default) | list | `<list>` | no |
 | public_agents_ips | List of ips allowed access to public agents. admin_ips are joined to this list | list | `<list>` | no |
 
 ## Outputs

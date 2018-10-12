@@ -86,7 +86,7 @@ resource "google_compute_firewall" "public-agents" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["${concat(list("80", "443"),var.public_agents_additional_ports)}"]
   }
 
   source_ranges = ["${var.public_agents_ips}"]
