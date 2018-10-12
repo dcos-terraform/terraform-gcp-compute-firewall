@@ -21,7 +21,7 @@
 provider "google" {}
 
 resource "google_compute_firewall" "allow-load-balancer-health-checks" {
-  name    = "${var.name_prefix}-allow-loadbalancer-access"
+  name    = "${var.cluster_name}-allow-loadbalancer-access"
   network = "${var.network}"
 
   allow {
@@ -35,7 +35,7 @@ resource "google_compute_firewall" "allow-load-balancer-health-checks" {
 }
 
 resource "google_compute_firewall" "internal-any-any" {
-  name    = "${var.name_prefix}-internal-any-any"
+  name    = "${var.cluster_name}-internal-any-any"
   network = "${var.network}"
 
   allow {
@@ -55,7 +55,7 @@ resource "google_compute_firewall" "internal-any-any" {
 }
 
 resource "google_compute_firewall" "adminrouter" {
-  name    = "${var.name_prefix}-adminrouter-firewall"
+  name    = "${var.cluster_name}-adminrouter-firewall"
   network = "${var.network}"
 
   allow {
@@ -68,7 +68,7 @@ resource "google_compute_firewall" "adminrouter" {
 }
 
 resource "google_compute_firewall" "ssh" {
-  name    = "${var.name_prefix}-ssh"
+  name    = "${var.cluster_name}-ssh"
   network = "${var.network}"
 
   allow {
