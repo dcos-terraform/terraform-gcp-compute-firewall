@@ -1,11 +1,11 @@
 # Cluster Name
 variable "cluster_name" {
-  description = "Cluster Name"
+  description = "Name of the DC/OS cluster"
 }
 
 # Network Name
 variable "network" {
-  description = "network"
+  description = "Network Name"
 }
 
 variable "internal_subnets" {

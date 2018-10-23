@@ -6,6 +6,6 @@ output "name_prefix" {
 
 # Network Name
 output "network" {
-  description = "network"
+  description = "Network Name"
   value       = "${var.network}"
 }
