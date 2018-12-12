@@ -8,7 +8,7 @@ The firewall module creates four different policies to be used by provisioning D
 ```hcl
 module "dcos-compute-firewall" {
   source  = "dcos-terraform/compute-firewall/gcp"
-  version = "~> 0.1"
+  version = "~> 0.1.0"
 
   network = "network_self_link"
   internal_subnets = "172.12.0.0/16"
