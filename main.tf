@@ -12,7 +12,7 @@
  *   version = "~> 0.1.0"
  *
  *   network = "network_self_link"
- *   internal_subnets = "172.12.0.0/16"
+ *   internal_subnets = "172.16.0.0/16"
  *   admin_ips = ["1.2.3.4/32"]
  * }
  * ```
