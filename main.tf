@@ -18,7 +18,7 @@
  * ```
  */
 
-provider "google" {}
+provider "google-beta" {}
 
 resource "google_compute_firewall" "allow-load-balancer-health-checks" {
   name    = "${var.cluster_name}-allow-loadbalancer-access"
@@ -32,6 +32,8 @@ resource "google_compute_firewall" "allow-load-balancer-health-checks" {
   # in range 130.211.0.0/22 and 35.191.0.0/16.
   # See https://cloud.google.com/load-balancing/docs/health-checks#https_ssl_proxy_tcp_proxy_and_internal_load_balancing  # for more details
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
+
+  provider = "google-beta"
 }
 
 resource "google_compute_firewall" "internal-any-any" {
@@ -52,6 +54,8 @@ resource "google_compute_firewall" "internal-any-any" {
 
   source_ranges = ["${var.internal_subnets}"]
   description   = "Used to allow internal access to all servers."
+
+  provider = "google-beta"
 }
 
 resource "google_compute_firewall" "adminrouter" {
@@ -65,6 +69,8 @@ resource "google_compute_firewall" "adminrouter" {
 
   source_ranges = ["${var.admin_ips}"]
   description   = "Used to allow HTTP and HTTPS access to DC/OS Adminrouter from the outside world specified by the user source range."
+
+  provider = "google-beta"
 }
 
 resource "google_compute_firewall" "ssh" {
@@ -78,6 +84,8 @@ resource "google_compute_firewall" "ssh" {
 
   source_ranges = ["${var.admin_ips}"]
   description   = "Used to allow SSH access to any instance from the outside world specified by the user source range."
+
+  provider = "google-beta"
 }
 
 resource "google_compute_firewall" "public-agents" {
@@ -93,4 +101,6 @@ resource "google_compute_firewall" "public-agents" {
   target_tags   = ["${var.cluster_name}-public-agents"]
 
   description = "Allow acces to public agents."
+
+  provider = "google-beta"
 }
