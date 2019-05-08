@@ -31,6 +31,6 @@ module "dcos-compute-firewall" {
 
 | Name | Description |
 |------|-------------|
-| name\_prefix | Cluster Name |
+| name\_prefix | Name Prefix |
 | network | Network Name |
 
