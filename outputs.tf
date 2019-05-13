@@ -1,6 +1,6 @@
 # Cluster Name
 output "name_prefix" {
-  description = "Cluster Name"
+  description = "Name Prefix"
   value       = "${var.cluster_name}"
 }
 
