@@ -29,3 +29,8 @@ variable "public_agents_additional_ports" {
   type        = "list"
   default     = []
 }
+
+variable "name_prefix" {
+  description = "Name Prefix"
+  default     = ""
+}

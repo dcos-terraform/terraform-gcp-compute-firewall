@@ -20,8 +20,12 @@
 
 provider "google" {}
 
+locals {
+  cluster_name = "${var.name_prefix != "" ? "${var.name_prefix}-${var.cluster_name}" : var.cluster_name}"
+}
+
 resource "google_compute_firewall" "allow-load-balancer-health-checks" {
-  name    = "${var.cluster_name}-allow-loadbalancer-access"
+  name    = "${local.cluster_name}-allow-loadbalancer-access"
   network = "${var.network}"
 
   allow {
@@ -35,7 +39,7 @@ resource "google_compute_firewall" "allow-load-balancer-health-checks" {
 }
 
 resource "google_compute_firewall" "internal-any-any" {
-  name    = "${var.cluster_name}-internal-any-any"
+  name    = "${local.cluster_name}-internal-any-any"
   network = "${var.network}"
 
   allow {
@@ -55,7 +59,7 @@ resource "google_compute_firewall" "internal-any-any" {
 }
 
 resource "google_compute_firewall" "adminrouter" {
-  name    = "${var.cluster_name}-adminrouter-firewall"
+  name    = "${local.cluster_name}-adminrouter-firewall"
   network = "${var.network}"
 
   allow {
@@ -68,7 +72,7 @@ resource "google_compute_firewall" "adminrouter" {
 }
 
 resource "google_compute_firewall" "ssh" {
-  name    = "${var.cluster_name}-ssh"
+  name    = "${local.cluster_name}-ssh"
   network = "${var.network}"
 
   allow {
@@ -81,7 +85,7 @@ resource "google_compute_firewall" "ssh" {
 }
 
 resource "google_compute_firewall" "public-agents" {
-  name    = "${var.cluster_name}-public-agents"
+  name    = "${local.cluster_name}-public-agents"
   network = "${var.network}"
 
   allow {
@@ -90,7 +94,7 @@ resource "google_compute_firewall" "public-agents" {
   }
 
   source_ranges = ["${var.public_agents_ips}"]
-  target_tags   = ["${var.cluster_name}-public-agents"]
+  target_tags   = ["${local.cluster_name}-public-agents"]
 
   description = "Allow acces to public agents."
 }
