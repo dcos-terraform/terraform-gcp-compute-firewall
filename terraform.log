@@ -1,0 +1,71 @@
+2019/09/02 11:06:29 [INFO] Terraform version: 0.11.14 mesosphere 
+2019/09/02 11:06:29 [INFO] Go runtime version: go1.12
+2019/09/02 11:06:29 [INFO] CLI args: []string{"/bin/terraform", "init", "-upgrade"}
+2019/09/02 11:06:29 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/09/02 11:06:29 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/09/02 11:06:29 [INFO] CLI command args: []string{"init", "-upgrade"}
+2019/09/02 11:06:29 [DEBUG] command: loading backend config file: /jenkins/workspace/p-compute-firewall_support_0.2.x
+2019/09/02 11:06:29 [INFO] command: empty backend config, returning nil
+2019/09/02 11:06:29 [DEBUG] command: no data state file found for backend config
+2019/09/02 11:06:29 [DEBUG] New state was assigned lineage "ce634509-7942-4c6b-bb96-de67e40da36d"
+2019/09/02 11:06:29 [INFO] command: backend initialized: <nil>
+2019/09/02 11:06:29 [DEBUG] checking for provider in "."
+2019/09/02 11:06:29 [DEBUG] checking for provider in "/bin"
+2019/09/02 11:06:29 [DEBUG] checking for provisioner in "."
+2019/09/02 11:06:29 [DEBUG] checking for provisioner in "/bin"
+2019/09/02 11:06:29 [INFO] Failed to read plugin lock file .terraform/plugins/linux_amd64/lock.json: open .terraform/plugins/linux_amd64/lock.json: no such file or directory
+2019/09/02 11:06:29 [INFO] command: backend <nil> is not enhanced, wrapping in local
+2019/09/02 11:06:29 [DEBUG] checking for provider in "."
+2019/09/02 11:06:29 [DEBUG] checking for provider in "/bin"
+2019/09/02 11:06:29 [DEBUG] plugin requirements: "google"=""
+2019/09/02 11:06:29 [DEBUG] fetching provider info for google version 2.14.0
+2019/09/02 11:06:29 [DEBUG] getting provider "google" version "2.14.0"
+2019/09/02 11:06:29 [DEBUG] plugin cache is disabled, so downloading google 2.14.0 from https://releases.hashicorp.com/terraform-provider-google/2.14.0/terraform-provider-google_2.14.0_linux_amd64.zip?checksum=sha256:3e9281c101cf2a87e814e4e7a984c985fd2830e1e117c1e2e42c8813feec1437
+2019/09/02 11:06:30 [DEBUG] looking for the google 2.14.0 plugin we just installed
+2019/09/02 11:06:30 [DEBUG] checking for provider in ".terraform/plugins/linux_amd64"
+2019/09/02 11:06:30 [DEBUG] found provider "terraform-provider-google_v2.14.0_x4"
+2019/09/02 11:06:30 [DEBUG] all plugins found discovery.PluginMetaSet{discovery.PluginMeta{Name:"google", Version:"2.14.0", Path:"/jenkins/workspace/p-compute-firewall_support_0.2.x/.terraform/plugins/linux_amd64/terraform-provider-google_v2.14.0_x4"}:struct {}{}}
+2019/09/02 11:06:30 [DEBUG] filtered plugins discovery.PluginMetaSet{discovery.PluginMeta{Name:"google", Version:"2.14.0", Path:"/jenkins/workspace/p-compute-firewall_support_0.2.x/.terraform/plugins/linux_amd64/terraform-provider-google_v2.14.0_x4"}:struct {}{}}
+2019/09/02 11:06:30 [DEBUG] checking for provider in "."
+2019/09/02 11:06:30 [DEBUG] checking for provider in "/bin"
+2019/09/02 11:06:30 [DEBUG] checking for provider in ".terraform/plugins/linux_amd64"
+2019/09/02 11:06:30 [DEBUG] found provider "terraform-provider-google_v2.14.0_x4"
+2019/09/02 11:06:30 [DEBUG] found valid plugin: "google", "2.14.0", "/jenkins/workspace/p-compute-firewall_support_0.2.x/.terraform/plugins/linux_amd64/terraform-provider-google_v2.14.0_x4"
+2019/09/02 11:06:30 [DEBUG] checking for provider in ".terraform/plugins/linux_amd64"
+2019/09/02 11:06:30 [DEBUG] found provider "terraform-provider-google_v2.14.0_x4"
+2019/09/02 11:06:30 [DEBUG] plugin: waiting for all plugin processes to complete...
+2019/09/02 11:06:30 [INFO] Terraform version: 0.11.14 mesosphere 
+2019/09/02 11:06:30 [INFO] Go runtime version: go1.12
+2019/09/02 11:06:30 [INFO] CLI args: []string{"/bin/terraform", "validate", "-check-variables=false"}
+2019/09/02 11:06:30 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/09/02 11:06:30 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/09/02 11:06:30 [INFO] CLI command args: []string{"validate", "-check-variables=false"}
+2019/09/02 11:06:30 [DEBUG] plugin: waiting for all plugin processes to complete...
+2019/09/02 11:06:42 [INFO] Terraform version: 0.11.14 mesosphere 
+2019/09/02 11:06:42 [INFO] Go runtime version: go1.12
+2019/09/02 11:06:42 [INFO] CLI args: []string{"/bin/terraform", "fmt", "main.tf"}
+2019/09/02 11:06:42 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/09/02 11:06:42 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/09/02 11:06:42 [INFO] CLI command args: []string{"fmt", "main.tf"}
+2019/09/02 11:06:42 [DEBUG] plugin: waiting for all plugin processes to complete...
+2019/09/02 11:06:42 [INFO] Terraform version: 0.11.14 mesosphere 
+2019/09/02 11:06:42 [INFO] Go runtime version: go1.12
+2019/09/02 11:06:42 [INFO] CLI args: []string{"/bin/terraform", "fmt", "meta.tf"}
+2019/09/02 11:06:42 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/09/02 11:06:42 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/09/02 11:06:42 [INFO] CLI command args: []string{"fmt", "meta.tf"}
+2019/09/02 11:06:42 [DEBUG] plugin: waiting for all plugin processes to complete...
+2019/09/02 11:06:42 [INFO] Terraform version: 0.11.14 mesosphere 
+2019/09/02 11:06:42 [INFO] Go runtime version: go1.12
+2019/09/02 11:06:42 [INFO] CLI args: []string{"/bin/terraform", "fmt", "outputs.tf"}
+2019/09/02 11:06:42 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/09/02 11:06:42 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/09/02 11:06:42 [INFO] CLI command args: []string{"fmt", "outputs.tf"}
+2019/09/02 11:06:42 [DEBUG] plugin: waiting for all plugin processes to complete...
+2019/09/02 11:06:42 [INFO] Terraform version: 0.11.14 mesosphere 
+2019/09/02 11:06:42 [INFO] Go runtime version: go1.12
+2019/09/02 11:06:42 [INFO] CLI args: []string{"/bin/terraform", "fmt", "variables.tf"}
+2019/09/02 11:06:42 [DEBUG] Attempting to open CLI config file: /root/.terraformrc
+2019/09/02 11:06:42 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/09/02 11:06:42 [INFO] CLI command args: []string{"fmt", "variables.tf"}
+2019/09/02 11:06:42 [DEBUG] plugin: waiting for all plugin processes to complete...
