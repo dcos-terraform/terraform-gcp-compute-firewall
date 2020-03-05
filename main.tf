@@ -64,7 +64,7 @@ resource "google_compute_firewall" "adminrouter" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "443"]
+    ports    = ["80", "443", "${var.adminrouter_grpc_proxy_port}"]
   }
 
   source_ranges = ["${var.admin_ips}"]

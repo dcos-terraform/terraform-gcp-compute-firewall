@@ -34,3 +34,8 @@ variable "name_prefix" {
   description = "Name Prefix"
   default     = ""
 }
+
+variable "adminrouter_grpc_proxy_port" {
+  description = ""
+  default     = 12379
+}
