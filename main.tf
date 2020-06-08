@@ -18,15 +18,16 @@
  * ```
  */
 
-provider "google" {}
+provider "google" {
+}
 
 locals {
-  cluster_name = "${var.name_prefix != "" ? "${var.name_prefix}-${var.cluster_name}" : var.cluster_name}"
+  cluster_name = var.name_prefix != "" ? "${var.name_prefix}-${var.cluster_name}" : var.cluster_name
 }
 
 resource "google_compute_firewall" "allow-load-balancer-health-checks" {
   name    = "${local.cluster_name}-allow-loadbalancer-access"
-  network = "${var.network}"
+  network = var.network
 
   allow {
     protocol = "tcp"
@@ -40,7 +41,7 @@ resource "google_compute_firewall" "allow-load-balancer-health-checks" {
 
 resource "google_compute_firewall" "internal-any-any" {
   name    = "${local.cluster_name}-internal-any-any"
-  network = "${var.network}"
+  network = var.network
 
   allow {
     protocol = "icmp"
@@ -54,46 +55,46 @@ resource "google_compute_firewall" "internal-any-any" {
     protocol = "tcp"
   }
 
-  source_ranges = ["${var.internal_subnets}"]
+  source_ranges = var.internal_subnets
   description   = "Used to allow internal access to all servers."
 }
 
 resource "google_compute_firewall" "adminrouter" {
   name    = "${local.cluster_name}-adminrouter-firewall"
-  network = "${var.network}"
+  network = var.network
 
   allow {
     protocol = "tcp"
     ports    = ["80", "443"]
   }
 
-  source_ranges = ["${var.admin_ips}"]
+  source_ranges = var.admin_ips
   description   = "Used to allow HTTP and HTTPS access to DC/OS Adminrouter from the outside world specified by the user source range."
 }
 
 resource "google_compute_firewall" "ssh" {
   name    = "${local.cluster_name}-ssh"
-  network = "${var.network}"
+  network = var.network
 
   allow {
     protocol = "tcp"
     ports    = ["22"]
   }
 
-  source_ranges = ["${var.admin_ips}"]
+  source_ranges = var.admin_ips
   description   = "Used to allow SSH access to any instance from the outside world specified by the user source range."
 }
 
 resource "google_compute_firewall" "public-agents" {
   name    = "${local.cluster_name}-public-agents"
-  network = "${var.network}"
+  network = var.network
 
   allow {
     protocol = "tcp"
-    ports    = ["${concat(list("80", "443"),var.public_agents_additional_ports)}"]
+    ports    = concat(["80", "443"], var.public_agents_additional_ports)
   }
 
-  source_ranges = ["${var.public_agents_ips}"]
+  source_ranges = var.public_agents_ips
   target_tags   = ["${local.cluster_name}-public-agents"]
 
   description = "Allow acces to public agents."
